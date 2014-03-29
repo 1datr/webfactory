@@ -1,5 +1,5 @@
 <?php 
-session_start();
+
 
 foreach($LIBS as $lib)
 {
@@ -25,12 +25,7 @@ function head($title)
 					</div>
 				</div>
 <?php 
-	if(!empty($_ARGS['urldebug']))
-	{
-		echo "<div style=\"background:#000;color:#fff;width:100%;position:fixed;margin:0px;top:0px;\">SITE : $_SITE <br /> ENTERPOINT : $_ENTERPOINT <br /> PAGE : $_PAGE<br /> ACTION : $_ACTION<br /> ARGS : ";
-		print_r($_ARGS);
-		echo "</div>";
-	}
+
 }
 
 

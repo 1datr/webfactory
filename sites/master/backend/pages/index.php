@@ -7,7 +7,7 @@ $projdir = scandir(sitedir()."$_ENTERPOINT/projects");
 if(!empty($_POST['newprojname']))
 {
 	mkdir(sitedir()."$_ENTERPOINT/projects/".$_POST['newprojname']);
-	file_put_contents(sitedir()."$_ENTERPOINT/projects/".$_POST['newprojname']."/index.php", "<?php ?>");
+	file_put_contents(sitedir()."$_ENTERPOINT/projects/".$_POST['newprojname']."/index.php", "<?php ?>");	
 	redirect($_SERVER['HTTP_REFERER']);
 }
 if(!empty($_POST['delproj']))

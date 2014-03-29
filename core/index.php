@@ -1,5 +1,24 @@
 <?php 
 
+$_BUFFER = '';
+
+if(!empty($_GET['q']))
+	$_QUERYSTR = $_GET['q'];
+else
+	$_QUERYSTR = substr($_SERVER["REQUEST_URI"],1);
+
+function callback_endflush($buffer)
+{
+	// remplace toutes les pommes par des carottes
+	GLOBAL $_QUERYSTR;
+	GLOBAL $_BUFFER;
+	$_BUFFER = $buffer;
+	file_put_contents("./cache/".md5( session_id() .$_QUERYSTR), $buffer);
+	//echo $buffer;
+}
+
+$cachefile = "./cache/".md5(session_id().$_QUERYSTR);
+
 require_once './core/file/index.php';
 
 $_SITE = "default";
@@ -13,12 +32,7 @@ define("ACTIONPREFIX","!");
 
 
 function parse_query()
-{
-	if(!empty($_GET['q']))
-		$querystr = $_GET['q'];
-	else 
-		$querystr = substr($_SERVER["REQUEST_URI"],1);
-	
+{		
 	//echo $querystr;
 	//echo "REQUEST_URI = $querystr<br />";
 	
@@ -27,8 +41,10 @@ function parse_query()
 	GLOBAL $_PAGE;
 	GLOBAL $_ENTERPOINT;
 	GLOBAL $_ACTION;
+	GLOBAL $_QUERYSTR;
 	GLOBAL $delimeter_twdot;
 
+	$querystr = $_QUERYSTR;
 	
 	$pos = strpos($querystr, TWODOT);
 	
@@ -163,12 +179,12 @@ function geturl($params,$page="index",$site="default",$ep="frontend")
 	if($params==null) $params  = Array();
 	foreach($params as $idx => $arg)
 		{
-			if(is_int($idx)) $url = "/$arg";
+			if(is_int($idx)) $url .= "/$arg";
 		}
 		
 	foreach($params as $idx => $arg)
 		{
-			if(is_string($idx)) $url = "/$idx:$arg";
+			if(is_string($idx)) $url .= "/$idx:$arg";
 		}
 		
 	
@@ -194,7 +210,29 @@ function getownurl($params,$page="index")
 	GLOBAL $_PAGE;
 	GLOBAL $_ENTERPOINT;
 	GLOBAL $_ACTION;
-	return geturl($params,$page="index",$_SITE,$_ENTERPOINT);
+	
+	$url = "";
+	if(($_SITE!="default")||($_ENTERPOINT!="frontend"))
+	{
+		$url = "/$_SITE".TWODOT."$_ENTERPOINT";
+	}
+	//var_dump($url);
+	
+	if($page!="index") $url .= "/$page";
+	if($params==null) $params  = Array();
+	foreach($params as $idx => $arg)
+	{
+		if(is_int($idx)) $url .= "/$arg";
+	}
+	
+	foreach($params as $idx => $arg)
+	{
+		if(is_string($idx)) $url .= "/$idx:$arg";
+	}
+	
+	
+	return $url;
+	//return geturl($params,$page,$_SITE,$_ENTERPOINT);
 }
 
 function redirect($URL)
@@ -231,5 +269,14 @@ function sitedir()
 	GLOBAL $_PAGE;
 	GLOBAL $_ENTERPOINT;
 	return "./sites/$_SITE/";
+}
+
+function mydir()
+{
+	GLOBAL $_SITE;
+	GLOBAL $_ARGS;
+	GLOBAL $_PAGE;
+	GLOBAL $_ENTERPOINT;
+	return "./sites/$_SITE/$_ENTERPOINT/";
 }
 ?>

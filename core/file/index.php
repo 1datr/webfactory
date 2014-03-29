@@ -11,4 +11,13 @@ function rrmdir($dir) {
 		rmdir($dir);
 	}
 }
+
+function clear_cache()
+{
+	$dir = scandir("./cache");
+	foreach($dir as $cachefile)
+	{
+		unlink("./cache/".$cachefile);
+	}
+}
 ?>
