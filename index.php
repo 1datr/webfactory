@@ -39,11 +39,13 @@ if($_ACTION)
 		}
 }
 else 
-{
+{	
 	$_CACHE = true;
 	// load page
 	if(file_exists("./sites/$_SITE/config.php"))
 		include "./sites/$_SITE/config.php";
+	
+	
 	
 	// caching
 	if(file_exists($cachefile)&&(empty($_POST))&&($_CACHE))
@@ -53,10 +55,10 @@ else
 		
 		
 	}
-	elseif(empty($_POST))	
+	elseif(empty($_POST)&&($_CACHE))	
 		ob_start("callback_endflush");
 	
-	
+	//var_dump("./sites/$_SITE/$_ENTERPOINT/pages$_PAGE");
 	
 	if(!$_STOP_WORK)
 	{
@@ -70,7 +72,8 @@ else
 		else
 		{			
 			if(file_exists("./sites/$_SITE/$_ENTERPOINT/inc/index.php"))
-				include "./sites/$_SITE/$_ENTERPOINT/inc/index.php";
+				include "./sites/$_SITE/$_ENTERPOINT/inc/index.php";					
+			
 			include "./sites/$_SITE/$_ENTERPOINT/pages$_PAGE";
 		}
 	

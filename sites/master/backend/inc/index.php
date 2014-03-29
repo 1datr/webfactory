@@ -1,13 +1,6 @@
 <?php 
 
 
-foreach($LIBS as $lib)
-{
-	if(file_exists(sitedir()."/lib/$lib/index.php"))
-		require_once sitedir()."/lib/$lib/index.php";
-
-}
-
 function head($title)
 {
 	GLOBAL $_ARGS;
