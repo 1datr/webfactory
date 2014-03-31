@@ -15,7 +15,7 @@ class wf_lib
 		{
 			//var_dump($p);
 			if(!empty($p))
-				$proj->addparam($p['name'],$p['defvalue'],$this->getname());
+				$proj->addparam($p);
 		}
 	}
 	
@@ -25,6 +25,13 @@ class wf_lib
 		list($thename) = sscanf($classname, "wfl_%s");
 		return $thename;
 	}
+	
+	function draw_param_input($param)
+	{
+		?>
+		<input type="text" name="params[<?php echo $param->name; ?>]" value="<?php echo $param->value; ?>" />
+		<?php 
+	}
 }
 
 class wfp_param 
@@ -32,13 +39,24 @@ class wfp_param
 	VAR $name;		//	name of setting item
 	VAR $value;		// 	value of setting item
 	VAR $lib;		// 
+	VAR $description;	// describe of field
+	VAR $title;		// title of field
+	
+	function __construct($name,$value,$title,$lib,$describe=NULL)
+	{
+		$this->name = $name;
+		$this->value = $value;
+		$this->title = $title;
+		$this->lib = $lib;
+		$this->description = $describe;
+	}
 }
 // class of webfactory project
 class wf_project {
 	VAR $params;
 	VAR $libs;
 	
-	function addparam($pname,$value,$lib)
+	function addparam($p)
 	{
 		if($this->params==NULL) 
 			$this->params=Array();
@@ -46,15 +64,12 @@ class wf_project {
 		if($this->libs==NULL)
 			$this->libs=Array();
 		
-		$paramobj = new wfp_param();
-		$paramobj->name = $pname;
-		$paramobj->value = $value;
-		$paramobj->lib = $lib;
 		
-		$this->params[$pname] = $paramobj;
 		
-		if(!in_array($lib, $this->libs))
-			$this->libs[]=$lib;
+		$this->params[$p->name] = $p;
+		
+		if(!in_array($p->lib, $this->libs))
+			$this->libs[]=$p->lib;
 		
 	}
 	
@@ -62,6 +77,12 @@ class wf_project {
 	{
 		file_put_contents($filename, serialize($this));
 	}
+	
+	function draw_param_input($fparam)
+	{
+		GLOBAL $_LIBS;
+		$_LIBS[$fparam->lib]->draw_param_input($fparam);
+	}	
 	
 }
 
@@ -89,4 +110,5 @@ function loadproject($projname)
 	}
 	return NULL;
 }
+
 ?>

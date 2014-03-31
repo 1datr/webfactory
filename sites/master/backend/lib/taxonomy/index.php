@@ -1,11 +1,11 @@
 <?php 
-class wfl_view extends wf_lib {
+class wfl_taxonomy extends wf_lib {
 	
 	function fieldlist()
 	{
 		return Array(
 				//new wfp_param('content_type','user',"Тип содержимого",$this->getname(),'Тип содержимого, выводимый в обзоре'),
-				new wfp_param('viewlist','user',"Обзоры",$this->getname(),'Вьюшки (выборки из контент типов)'),
+				new wfp_param('taxlist','user',"Таксономии",$this->getname(),'Справочники'),
 					//Array('name'=>'content_type','defvalue'=>'c1')
 			);
 	}

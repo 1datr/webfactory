@@ -25,7 +25,53 @@ foreach($LIBS as $lib)
 
 $project = loadproject($proj);
 ?>
+
+
+
+
+<div id="proj_body">
+
 <h2>ПРОЕКТ <?php  echo $proj; ?></h2>
+<form method="post" id="proj_form">
+
+<div id="pnl_left">
+<table>
 <?php 
-print_r($project);
+
+foreach($project->params as $key => $param)
+{
+	echo "<tr>
+		<th>".$param->title."</th>";
+	echo "<td>";
+	echo $project->draw_param_input($param);
+	echo "</td>
+	</tr>
+	<tr><td colspan=\"2\">".$param->description."</td></tr>";
+}
 ?>
+<tr><td></td><td><input type="submit" name="subm_compile" value="Скомпилировать" /></td></tr>
+</table>
+</div>
+<div id="pnl_right">
+<h3>Сайт куда компилировать</h3>
+<ul id="dst_site">
+<?php 
+$sites = scandir("./sites");
+foreach ($sites as $site)
+{
+	if(($site!='..') && ($site!='.') && ($site!=$_SITE))
+	{
+	?>
+	<li>
+		<input type="radio" name="_SITE" value="<?php echo $site; ?>"/><label><?php echo $site; ?></label>
+	</li>
+	<?php
+	} 
+} 
+?>
+</ul>
+</div>
+
+</form>
+
+</div>

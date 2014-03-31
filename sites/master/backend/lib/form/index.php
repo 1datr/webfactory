@@ -1,11 +1,11 @@
 <?php 
-class wfl_view extends wf_lib {
+class wfl_form extends wf_lib {
 	
 	function fieldlist()
 	{
 		return Array(
 				//new wfp_param('content_type','user',"Тип содержимого",$this->getname(),'Тип содержимого, выводимый в обзоре'),
-				new wfp_param('viewlist','user',"Обзоры",$this->getname(),'Вьюшки (выборки из контент типов)'),
+				new wfp_param('formlist','user',"Формы",$this->getname(),'Формы'),
 					//Array('name'=>'content_type','defvalue'=>'c1')
 			);
 	}
