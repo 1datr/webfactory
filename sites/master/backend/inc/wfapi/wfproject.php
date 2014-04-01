@@ -38,12 +38,30 @@ class wf_lib
 		return Array(Array("name"=>"index","title"=>"Основное"));
 	}
 	
-	function page_index()
+	function page_index($project)
 	{
-		echo "THE INDEX PAGE";
+		echo $this->getname()." v.".$this->version;
+		?>
+		<table>
+		<?php
+		
+		foreach ($this->fieldlist() as $fld)
+		{
+			//print_r($fld);
+			$value = $project->params[$fld->name]->value;
+			?>
+			<tr>
+			<th><?php echo $project->params[$fld->name]->title; ?></th><td><input type="text" name="<?php echo $fld->name; ?>" value="<?php echo $value; ?>" /></td>
+			</tr>
+			<?php 	
+		}
+		?>
+		</table>
+		<?php
 	}
 	
 	VAR $pagename="";
+	VAR $version = "1.0";
 }
 
 class wfp_param 

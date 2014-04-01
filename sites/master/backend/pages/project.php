@@ -49,7 +49,7 @@ foreach($_LIBS as $key => $lib)
 		foreach($lib->getpages() as $page)
 		{
 			?>
-			<li><?php echo $page['title']; ?></li>
+			<li><a href="javascript:" onclick="showpage('page_<?php echo $lib->getname(); ?>_<?php echo $page['name']; ?>');"><?php echo $page['title']; ?></a></li>
 			<?php 
 		}
 		?>
@@ -75,10 +75,10 @@ foreach($_LIBS as $key => $lib)
 			else 
 				$STYLE = "style=\"display:none;\"";
 			?>
-			<div id="page_<?php echo $lib->getname(); ?>_<?php echo $page; ?>" class="libpage" <?php  echo $STYLE; ?>>
+			<div id="page_<?php echo $lib->getname(); ?>_<?php echo $page['name']; ?>" class="libpage" <?php  echo $STYLE; ?>>
 			<h3><?php echo $page['title']; ?></h3>
 			<?php 
-				$lib->$pagefun();
+				$lib->$pagefun($project);
 			?>
 			</div>			
 			<?php

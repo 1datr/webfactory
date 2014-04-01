@@ -15,6 +15,13 @@ function head($title)
 	<script src="<?php echo nestedurl("js/jquery.treeview.js");?>" type="text/javascript"></script>
 
 	<script type="text/javascript">
+
+		function showpage(pageid)
+		{
+			$(".libpage").hide();
+			$("#"+pageid).show();
+		}
+	
 		$(function() {
 			$(".treeview").treeview({
 				collapsed: true,
