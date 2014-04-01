@@ -5,7 +5,8 @@ class wfl_info extends wf_lib {
 	{
 		return Array(
 				//new wfp_param('content_type','user',"Тип содержимого",$this->getname(),'Тип содержимого, выводимый в обзоре'),
-				new wfp_param('taxlist','user',"Таксономии",$this->getname(),'Справочники'),
+				new wfp_param('sitename','Site1',"Название сайта",$this->getname(),''),
+				new wfp_param('moto','Hello, world',"Слоган",$this->getname(),''),
 					//Array('name'=>'content_type','defvalue'=>'c1')
 			);
 	}

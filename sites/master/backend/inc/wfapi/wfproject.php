@@ -51,7 +51,7 @@ class wf_lib
 			$value = $project->params[$fld->name]->value;
 			?>
 			<tr>
-			<th><?php echo $project->params[$fld->name]->title; ?></th><td><input type="text" name="<?php echo $fld->name; ?>" value="<?php echo $value; ?>" /></td>
+			<th><?php echo $project->params[$fld->name]->title; ?></th><td><input type="text" name="params[<?php echo $fld->name; ?>]<?php echo $fld->name; ?>" value="<?php echo $value; ?>" /></td>
 			</tr>
 			<?php 	
 		}
@@ -85,6 +85,7 @@ class wfp_param
 class wf_project {
 	VAR $params;
 	VAR $libs;
+	VAR $name;
 	
 	function addparam($p)
 	{
@@ -103,8 +104,10 @@ class wf_project {
 		
 	}
 	
-	function save($filename)
+	function save($filename=NULL)
 	{
+		if($filename==NULL)
+			$filename = mydir()."/projects/".$this->name."/index.prj";
 		file_put_contents($filename, serialize($this));
 	}
 	
@@ -128,7 +131,7 @@ function loadproject($projname)
 	else 
 	{
 		$projobj = new wf_project();
-		
+		$projobj->name = $projname;
 		GLOBAL $_LIBS;
 		
 		foreach($_LIBS as $lname => $lib)

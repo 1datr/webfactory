@@ -10,7 +10,20 @@ class wfl_theme extends wf_lib {
 			);
 	}
 	
+	// get pages of project required to this library
+	function getpages()
+	{
+		return Array(
+				Array("name"=>"index","title"=>"Основное"),
+				Array("name"=>"colors","title"=>"Цветовая схема")
+		);
+	}
 	
+	function page_colors()
+	{
+		echo "<p>COLORS</p>";
+		
+	}
 	
 	VAR $pagename="Тема";
 }

@@ -9,28 +9,22 @@ function head($title)
 	<head>
 	<title><?php echo $title; ?></title>
 	<meta http-equiv="Content-type" content="text/html; charset=cp1251"/>
-			<link type="text/css" rel="stylesheet" href="<?php echo nestedurl("css/style.css");?>" media="all" />
+			
+	<link type="text/css" rel="stylesheet" href="<?php echo nestedurl("css/style.css");?>" media="all" />
+	<link type="text/css" rel="stylesheet" href="<?php echo nestedurl("css/jquery-ui.css");?>" media="all" />
 	
 	<script src="<?php echo nestedurl("js/jquery.js");?>" type="text/javascript"></script>
-	<script src="<?php echo nestedurl("js/jquery.treeview.js");?>" type="text/javascript"></script>
+	<script src="<?php echo nestedurl("js/jquery-ui.min.js");?>" type="text/javascript"></script>
 
 	<script type="text/javascript">
-
-		function showpage(pageid)
-		{
-			$(".libpage").hide();
-			$("#"+pageid).show();
-		}
-	
-		$(function() {
-			$(".treeview").treeview({
-				collapsed: true,
-				animated: "medium",
-				control:"#sidetreecontrol",
-				persist: "location"
-			});
-		})
-		
+	$(document).ready(function() {
+		  // Handler for .ready() called.
+		/*$('#tabs').tabs();
+		$('#tabs1').tabs();
+		$('#tabs2').tabs();*/
+		$('.htabs').tabs();
+		$('.vtabs').tabs().addClass('ui-tabs-vertical ui-helper-clearfix');
+	});
 	</script>
 	
 	</head>

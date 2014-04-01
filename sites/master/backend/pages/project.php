@@ -24,9 +24,31 @@ foreach($LIBS as $lib)
 	}	
 
 $project = loadproject($proj);
+
+// save the project in file
+if(!empty($_POST['subm_save']))
+{
+	foreach($_POST['params'] as $idx => $val)
+	{
+		$project->params[$idx]->value = $val;
+	}	
+	
+	$project->save();
+	redirect($_SERVER['HTTP_REFERER']);
+}
+// compile the project
+if(!empty($_POST['subm_compile']))
+{
+	foreach($_POST['params'] as $idx => $val)
+	{
+		$project->params[$idx]->value = $val;
+	}
+
+	$project->save();
+	redirect($_SERVER['HTTP_REFERER']);
+}
+
 ?>
-
-
 
 
 <div id="proj_body">
@@ -36,6 +58,82 @@ $project = loadproject($proj);
 
 <div>
 
+<div class="section" id="pnl_left">
+
+	<div id="tabs" class="htabs">
+    <ul>
+    <?php 
+    $i = 0;
+	foreach($_LIBS as $key => $lib)
+	{ 
+		?>
+		<li><a href="#tabs-<?php echo $i;?>"><?php echo $lib->pagename; ?> </a></li>
+	<?php 	
+	$i++;
+	}
+?>       
+    </ul>
+    
+    <?php 
+    $i = 0;
+	foreach($_LIBS as $key => $lib)
+	{ 
+		$pagelist = $lib->getpages();
+		?>
+		<div id="tabs-<?php echo $i;?>">
+		<p>
+		<?php 
+		if(count($pagelist)==1)
+		{
+			$pagefun = "page_".$pagelist[0]['name'];
+			$lib->$pagefun($project);
+		}
+		else 
+		{
+		?>
+			<div id="tabs<?php echo $i;?>" class="vtabs">
+			<ul class="ui-tabs-vertical">
+			<?php 
+			
+			$j=0;
+			foreach($pagelist as $page)
+				{
+				?>
+					<li><a href="#tabs-<?php echo $i;?><?php echo $j;?>"><?php echo $page['title']; ?></a></li>
+				<?php 
+				$j++;
+				}
+			?>
+			</ul>	
+			<?php 
+			$j=0;
+			foreach($pagelist as $page)
+				{
+					$pagefun = "page_".$page['name'];
+				?>
+				<div id="tabs-<?php echo $i;?><?php echo $j;?>">
+                    <p><?php $lib->$pagefun($project); ?></p>
+                </div>				
+				<?php 
+				$j++;
+				}
+			?>
+            </div>  
+            <?php 
+		}
+            ?> 		
+		</p>
+		</div>		
+		<?php 
+		$i++;
+	}
+		?>    
+	</div>
+
+
+</div><!-- .section -->  
+<?php 
+/*
 <div id="pnl_left">
 
 <ul class="treeview" id="tree">
@@ -88,7 +186,8 @@ foreach($_LIBS as $key => $lib)
 }
 ?>
 </div>
-
+*/
+?>
 
 <div id="pnl_right">
 <h3>Сайт куда компилировать</h3>
