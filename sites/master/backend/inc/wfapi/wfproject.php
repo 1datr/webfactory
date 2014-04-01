@@ -32,6 +32,18 @@ class wf_lib
 		<input type="text" name="params[<?php echo $param->name; ?>]" value="<?php echo $param->value; ?>" />
 		<?php 
 	}
+	// get pages of project required to this library
+	function getpages()
+	{
+		return Array(Array("name"=>"index","title"=>"Основное"));
+	}
+	
+	function page_index()
+	{
+		echo "THE INDEX PAGE";
+	}
+	
+	VAR $pagename="";
 }
 
 class wfp_param 

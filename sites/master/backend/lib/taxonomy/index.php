@@ -11,5 +11,6 @@ class wfl_taxonomy extends wf_lib {
 	}
 	
 	
+	VAR $pagename="Таксономия";
 }
 ?>

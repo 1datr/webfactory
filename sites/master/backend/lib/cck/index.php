@@ -10,5 +10,7 @@ class wfl_cck extends wf_lib {
 	}
 	
 	
+	
+	VAR $pagename="Типы контента";
 }
 ?>

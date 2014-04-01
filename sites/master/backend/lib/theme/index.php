@@ -11,5 +11,7 @@ class wfl_theme extends wf_lib {
 	}
 	
 	
+	
+	VAR $pagename="Тема";
 }
 ?>

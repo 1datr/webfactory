@@ -11,5 +11,7 @@ class wfl_view extends wf_lib {
 	}
 	
 	
+	
+	VAR $pagename="Выборки";
 }
 ?>

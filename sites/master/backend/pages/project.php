@@ -34,44 +34,91 @@ $project = loadproject($proj);
 <h2>ПРОЕКТ <?php  echo $proj; ?></h2>
 <form method="post" id="proj_form">
 
-<div id="pnl_left">
-<table>
-<?php 
+<div>
 
-foreach($project->params as $key => $param)
-{
-	echo "<tr>
-		<th>".$param->title."</th>";
-	echo "<td>";
-	echo $project->draw_param_input($param);
-	echo "</td>
-	</tr>
-	<tr><td colspan=\"2\">".$param->description."</td></tr>";
+<div id="pnl_left">
+
+<ul class="treeview" id="tree">
+<?php 
+foreach($_LIBS as $key => $lib)
+{ 
+	?>
+	<li><?php echo $lib->pagename; ?>
+		<ul>
+		<?php 
+		foreach($lib->getpages() as $page)
+		{
+			?>
+			<li><?php echo $page['title']; ?></li>
+			<?php 
+		}
+		?>
+		</ul>
+	</li>
+	<?php 	
 }
 ?>
-<tr><td></td><td><input type="submit" name="subm_compile" value="Скомпилировать" /></td></tr>
-</table>
+</ul>
 </div>
+
+<div id="pnl_page">
+<?php 
+$i=0;
+foreach($_LIBS as $key => $lib)
+{ 
+	
+		foreach($lib->getpages() as $page)
+		{
+			$pagefun = "page_".$page['name'];
+			if($i==0)
+				$STYLE = '';
+			else 
+				$STYLE = "style=\"display:none;\"";
+			?>
+			<div id="page_<?php echo $lib->getname(); ?>_<?php echo $page; ?>" class="libpage" <?php  echo $STYLE; ?>>
+			<h3><?php echo $page['title']; ?></h3>
+			<?php 
+				$lib->$pagefun();
+			?>
+			</div>			
+			<?php
+			$i++; 
+		}
+		
+}
+?>
+</div>
+
+
 <div id="pnl_right">
 <h3>Сайт куда компилировать</h3>
 <ul id="dst_site">
 <?php 
 $sites = scandir("./sites");
+$i=0;
 foreach ($sites as $site)
 {
 	if(($site!='..') && ($site!='.') && ($site!=$_SITE))
 	{
+		if($i==0) $checked = "checked"; else $checked = "";
 	?>
 	<li>
-		<input type="radio" name="_SITE" value="<?php echo $site; ?>"/><label><?php echo $site; ?></label>
+		<input type="radio" name="_SITE" value="<?php echo $site; ?>" <?php echo $checked; ?>/><label><?php echo $site; ?></label>
 	</li>
 	<?php
+	$i++;
 	} 
 } 
 ?>
 </ul>
 </div>
 
+</div>
+
+<div>
+<input type="submit" name="subm_save" value="Сохранить" />
+<input type="submit" name="subm_compile" value="Скомпилировать" />
+</div>
 </form>
 
 </div>
