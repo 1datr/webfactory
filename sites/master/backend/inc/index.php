@@ -18,10 +18,7 @@ function head($title)
 
 	<script type="text/javascript">
 	$(document).ready(function() {
-		  // Handler for .ready() called.
-		/*$('#tabs').tabs();
-		$('#tabs1').tabs();
-		$('#tabs2').tabs();*/
+		  // Handler for .ready() called.		
 		$('.htabs').tabs();
 		$('.vtabs').tabs().addClass('ui-tabs-vertical ui-helper-clearfix');
 	});
@@ -31,7 +28,7 @@ function head($title)
 			<body>
 				<div id="header">
 					<div id="header_nested">
-	
+						
 					</div>
 				</div>
 <?php 

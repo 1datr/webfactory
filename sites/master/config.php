@@ -1,5 +1,5 @@
 <?php
-$LIBS = Array('info','theme','cck','form','view','taxonomy');
+$LIBS = Array('info','maket','cck','form','view','taxonomy');
 $_CACHE = false;
 
 $_USER = "admin";

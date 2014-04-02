@@ -51,18 +51,21 @@ div#pnl_page {
 
 div#pnl_left {
 	display:inline-block;
-	width: 70%;
+	width: 75%;
 	vertical-align: top;
-	/*float:left;*/	
+	margin-left: 5px;
 }
 
 div#pnl_right {
 	display:inline-block;
-	/*float:right;*/
-	width: 15%;
+	/*float:right;
+	width: 15%;*/
+	margin-left: 5px;
+	margin-top: 10px;
 	vertical-align: top;
 }
 
+/* ui tabs */
 .section {
 	width: 600px;
 	background: #EFEFEF;
@@ -162,4 +165,26 @@ ul.tabs {
     border-radius: 0;
     position: relative;
     left: -1px;
+}
+
+#thetitle {
+	/*background: #ddddfd;*/
+	/*width: 500px;*/
+	/*z-index: 50;*/
+}
+
+#sck_title {
+	font-size: 20px;
+	color: #000;
+	margin-left: 70px;
+	margin-right: 50px;
+}
+
+#webfactory_title {
+	font-size: 35px;
+	color: #55d;
+}
+
+div#tabs th {
+	vertical-align: top;
 }
