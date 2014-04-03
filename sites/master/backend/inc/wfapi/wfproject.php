@@ -57,6 +57,16 @@ class wf_project {
 		$_LIBS[$fparam->lib]->draw_param_input($fparam);
 	}	
 	
+	function compile($_site_to)
+	{
+		GLOBAL $_LIBS;
+		GLOBAL $_SITE;
+		foreach ($_LIBS as $idx => $lib)
+		{
+			$lib->hook("compile",Array('SITE'=>$_site_to));
+		}
+	}
+	
 }
 
 function loadproject($projname)

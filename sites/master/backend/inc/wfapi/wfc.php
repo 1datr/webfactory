@@ -128,6 +128,22 @@ class wf_lib
 		return Array(Array("name"=>"index","title"=>"Основное"));
 	}
 	
+	function hook($hookname,$params=NULL)
+	{
+		$hookname = "hook_".$hookname;
+		if(method_exists($this, $hookname))
+			$this->$hookname($params);
+	}
+	
+	function gen_hook($hookname,$params=NULL)
+	{
+		GLOBAL $_LIBS;
+		foreach ($_LIBS as $idx => $lib)
+		{
+			$lib->hook($hookname,$params);
+		}
+	}
+	
 	function page_index($project)
 	{
 		echo $this->getname()." v.".$this->version;

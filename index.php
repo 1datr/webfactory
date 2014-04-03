@@ -11,6 +11,8 @@ $time_start = getmicrotime();
 require_once './core/index.php';
 parse_query();
 
+//print_r($_ARGS);
+
 if(!empty($_ARGS['urldebug']))
 {
 	echo "<div style=\"background:#000;color:#fff;width:100%;position:fixed;margin:0px;top:0px;\">SITE : $_SITE <br /> ENTERPOINT : $_ENTERPOINT <br /> PAGE : $_PAGE<br /> ACTION : $_ACTION<br /> ARGS : ";

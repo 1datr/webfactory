@@ -43,8 +43,13 @@ if(!empty($_POST['subm_compile']))
 	{
 		$project->params[$idx]->value = $val;
 	}
-
-	$project->save();
+	
+	if($_POST['_SITE']=='&newsite')
+	{
+		$_POST['_SITE']=$_POST['newsitename'];
+	}
+	//print_r($_POST);
+	$project->compile($_POST['_SITE']);
 	redirect($_SERVER['HTTP_REFERER']);
 }
 
@@ -72,6 +77,7 @@ if(!empty($_POST['subm_compile']))
 	$i++;
 	}
 ?>       
+		
     </ul>
     
     <?php 
@@ -132,62 +138,6 @@ if(!empty($_POST['subm_compile']))
 
 
 </div><!-- .section -->  
-<?php 
-/*
-<div id="pnl_left">
-
-<ul class="treeview" id="tree">
-<?php 
-foreach($_LIBS as $key => $lib)
-{ 
-	?>
-	<li><?php echo $lib->pagename; ?>
-		<ul>
-		<?php 
-		foreach($lib->getpages() as $page)
-		{
-			?>
-			<li><a href="javascript:" onclick="showpage('page_<?php echo $lib->getname(); ?>_<?php echo $page['name']; ?>');"><?php echo $page['title']; ?></a></li>
-			<?php 
-		}
-		?>
-		</ul>
-	</li>
-	<?php 	
-}
-?>
-</ul>
-</div>
-
-<div id="pnl_page">
-<?php 
-$i=0;
-foreach($_LIBS as $key => $lib)
-{ 
-	
-		foreach($lib->getpages() as $page)
-		{
-			$pagefun = "page_".$page['name'];
-			if($i==0)
-				$STYLE = '';
-			else 
-				$STYLE = "style=\"display:none;\"";
-			?>
-			<div id="page_<?php echo $lib->getname(); ?>_<?php echo $page['name']; ?>" class="libpage" <?php  echo $STYLE; ?>>
-			<h3><?php echo $page['title']; ?></h3>
-			<?php 
-				$lib->$pagefun($project);
-			?>
-			</div>			
-			<?php
-			$i++; 
-		}
-		
-}
-?>
-</div>
-*/
-?>
 
 <div id="pnl_right">
 <h3>Сайт куда компилировать</h3>
@@ -201,14 +151,15 @@ foreach ($sites as $site)
 	{
 		if($i==0) $checked = "checked"; else $checked = "";
 	?>
-	<li>
-		<input type="radio" name="_SITE" value="<?php echo $site; ?>" <?php echo $checked; ?>/><label><?php echo $site; ?></label>
-	</li>
+	<li><input type="radio" name="_SITE" value="<?php echo $site; ?>" <?php echo $checked; ?>/><label><?php echo $site; ?></label></li>
 	<?php
 	$i++;
 	} 
 } 
 ?>
+<li><input type="radio" name="_SITE" value="&newsite"/><label>Новый сайт</label><br />
+<input type="text" name="newsitename" value=""/>
+</li>
 </ul>
 </div>
 

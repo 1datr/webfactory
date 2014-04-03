@@ -12,6 +12,12 @@ class wfl_info extends wf_lib {
 			);
 	}
 	
+	function hook_compile($_params)
+	{
+		echo "<h2>COMPILING</h2>";
+		print_r($_params);
+		makesite($_params['SITE'],$this->params['enterpoints']);
+	}
 	
 	VAR $pagename="Информация";
 }

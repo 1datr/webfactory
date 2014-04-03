@@ -249,7 +249,8 @@ function redirect($URL)
 
 function makesite($sitename,$epoints = NULL)
 {
-	mkdir("./sites/$sitename");
+	if(!file_exists("./sites/$sitename"))
+		mkdir("./sites/$sitename");
 	if($epoints==NULL)
 	{
 		$epoints = Array('frontend','backend');

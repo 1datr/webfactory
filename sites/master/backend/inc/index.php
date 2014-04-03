@@ -31,14 +31,18 @@ function head($title)
 						
 					</div>
 				</div>
+				<div id="menu">
+				<a href="<?php echo getownurl(null,"exit");?>">Выход</a>
+				</div>
 <?php 
-
 }
 
 
 if(empty($_SESSION['authed'])&&($_PAGE!='/auth.php'))
 {
 	//echo geturl(null,"auth",$_SITE,$_ENTERPOINT);
-	redirect("/".geturl(null,"auth",$_SITE,$_ENTERPOINT));
+	print_r($_SERVER);
+	$_SESSION['REDIRECT_URL'] = $_SERVER['REDIRECT_URL'];
+	redirect(getownurl(null,"auth"));
 }
 ?>
