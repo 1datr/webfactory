@@ -31,8 +31,20 @@ function head($title)
 						
 					</div>
 				</div>
+<?php 
+$menu_array = Array("Выход"=>getownurl(null,"exit"),"Проекты"=>getownurl(null),"Модули"=>getownurl(null,"modules"));				
+?>
 				<div id="menu">
-				<a href="<?php echo getownurl(null,"exit");?>">Выход</a>
+				<ul>
+				<?php 
+				foreach($menu_array as $capt => $ref)
+				{
+					?>
+					<li><a href="<?php echo $ref;?>"><?php echo $capt;?></a></li>
+					<?php 
+				}
+				?>
+				</ul>
 				</div>
 <?php 
 }

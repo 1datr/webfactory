@@ -188,3 +188,12 @@ ul.tabs {
 div#tabs th {
 	vertical-align: top;
 }
+
+div#menu ul{
+	list-style: none;
+}
+
+div#menu ul li{
+	list-style: none;
+	display: inline;
+}
