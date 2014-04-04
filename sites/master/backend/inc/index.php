@@ -26,17 +26,23 @@ function head($title)
 	
 	</head>
 			<body>
+			
 				<div id="header">
 					<div id="header_nested">
 						
 					</div>
 				</div>
 <?php 
-$menu_array = Array("Выход"=>getownurl(null,"exit"),"Проекты"=>getownurl(null),"Модули"=>getownurl(null,"modules"));				
+$menu_array = Array(
+	"Выход"=>getownurl(null,"exit"),
+	"Проекты"=>getownurl(null),
+	"Модули"=>getownurl(null,"modules"),
+);				
 ?>
 				<div id="menu">
 				<ul>
 				<?php 
+				if(!empty($_SESSION['authed']))
 				foreach($menu_array as $capt => $ref)
 				{
 					?>
@@ -46,6 +52,8 @@ $menu_array = Array("Выход"=>getownurl(null,"exit"),"Проекты"=>getownurl(null),"
 				?>
 				</ul>
 				</div>
+				
+				<div id="proj_body">
 <?php 
 }
 
@@ -58,3 +66,4 @@ if(empty($_SESSION['authed'])&&($_PAGE!='/auth.php'))
 	redirect(getownurl(null,"auth"));
 }
 ?>
+</div>

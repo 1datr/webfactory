@@ -63,7 +63,7 @@ class wf_project {
 		GLOBAL $_SITE;
 		foreach ($_LIBS as $idx => $lib)
 		{
-			$lib->hook("compile",Array('SITE'=>$_site_to));
+			$lib->hook("compile",Array('PROJECT'=>&$this,'SITE'=>$_site_to));
 		}
 	}
 	

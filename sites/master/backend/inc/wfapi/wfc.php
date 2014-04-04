@@ -115,6 +115,17 @@ class wf_lib
 		return $thename;
 	}
 	
+	function parse_temp($tmpl_file,$parse_vars)
+	{
+		$content = file_get_contents(mydir()."lib/".$this->getname()."/templates/$tmpl_file.pft");
+		$parse_vars_skob = Array();
+		foreach ($parse_vars as $key => $val)
+		{
+			$parse_vars_skob["{_".$key."_}"]=$val;			
+		}
+		return strtr($content,$parse_vars_skob);
+	}
+	
 	function draw_param_input($param)
 	{
 		$ftype = gettype($param->value);

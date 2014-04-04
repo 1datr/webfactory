@@ -262,6 +262,14 @@ function makesite($sitename,$epoints = NULL)
 		file_put_contents("./sites/$sitename/$p/pages/index.php", "<?php ?>");
 	}
 }
+// wrie file in site 
+function write_file($sitename,$ep,$filename,$content)
+{
+	if($ep==NULL)
+		file_put_contents("./sites/$sitename/$filename", $content);
+	else 
+		file_put_contents("./sites/$sitename/$ep/$filename", $content);
+}
 
 function sitedir()
 {

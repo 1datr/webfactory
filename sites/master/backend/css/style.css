@@ -26,12 +26,11 @@ ul#dst_site li{
 	list-style-type:none;
 }
 
-div#proj_body {
-	margin-left: 100px;
-	margin-right: 100px;
+div#proj_body {	
+	margin: auto auto;
 	margin-top: 40px;
-	
-	padding: 10px;
+	width: 90%;
+	padding-left: 50px;
 	border-radius: 5 5 5 5;
 	border: 1px solid #000;
 	/*height: 60%;*/
@@ -196,4 +195,23 @@ div#menu ul{
 div#menu ul li{
 	list-style: none;
 	display: inline;
+}
+
+div#menu ul li a {
+	color: #22222f;
+	background-color: #dfffff;
+	border-radius: 2;
+	border: 1px solid #111111;
+	padding: 5px;
+	text-decoration: none;
+}
+
+div#menu ul li a:hover {
+	color: #222f22;
+	background-color: #fcffff;	
+}
+
+div#menu ul li a:active {
+	color: #dd2f22;
+	background-color: #dfdfff;	
 }

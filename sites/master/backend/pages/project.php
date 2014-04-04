@@ -56,8 +56,6 @@ if(!empty($_POST['subm_compile']))
 ?>
 
 
-<div id="proj_body">
-
 <h2>опнейр <?php  echo $proj; ?></h2>
 <form method="post" id="proj_form">
 
@@ -171,4 +169,3 @@ foreach ($sites as $site)
 </div>
 </form>
 
-</div>

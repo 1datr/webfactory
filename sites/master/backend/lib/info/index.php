@@ -17,6 +17,12 @@ class wfl_info extends wf_lib {
 		echo "<h2>COMPILING</h2>";
 		print_r($_params);
 		makesite($_params['SITE'],$this->params['enterpoints']);
+		write_file($_params['SITE'],NULL,"config.php",
+					$this->parse_temp("config",
+						Array(
+							"TITLE"=>$_params['PROJECT']->params['sitename']->value,
+							"SLOGAN"=>$_params['PROJECT']->params['moto']->value,
+						)));
 	}
 	
 	VAR $pagename="Информация";
