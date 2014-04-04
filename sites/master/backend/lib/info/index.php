@@ -7,7 +7,7 @@ class wfl_info extends wf_lib {
 				//new wfp_param('content_type','user',"Тип содержимого",$this->getname(),'Тип содержимого, выводимый в обзоре'),
 				new wfp_param('sitename','Site1',"Название сайта",$this->getname(),''),
 				new wfp_param('moto','Hello, world',"Слоган",$this->getname(),''),
-				new wfp_param('enterpoints',Array('frontend','backend'),"Точки входа",$this->getname(),''),
+				new wfp_param('enterpoints',Array('frontend','backend','install'),"Точки входа",$this->getname(),'',Array('frontend','backend','install')),
 					//Array('name'=>'content_type','defvalue'=>'c1')
 			);
 	}
@@ -23,6 +23,64 @@ class wfl_info extends wf_lib {
 							"TITLE"=>$_params['PROJECT']->params['sitename']->value,
 							"SLOGAN"=>$_params['PROJECT']->params['moto']->value,
 						)));
+	}
+	
+	function fld_enterpoints_input_draw($param)
+	{
+		GLOBAL $_SITE;
+		GLOBAL $_ARGS;
+		GLOBAL $_PAGE;
+		GLOBAL $_ENTERPOINT;
+		?>
+		<div id="array_box_<?php echo $param->name; ?>" class="arraybox">
+		<?php 
+			foreach ($param->value as $ep)
+			{
+				//	var_dump($param);
+				$readonly = "";
+				if(in_array($ep, $param->att_data)) 
+				{
+					$readonly =" readonly disabled=\"disabled\"";
+				}
+				?>
+				<div class="array_item">
+				<div class="textbox">
+				<input type="text" name="params[<?php echo $param->name; ?>][]"<?php echo $readonly; ?> value="<?php echo $ep; ?>" />
+				</div>
+				<?php 
+				if(in_array($ep, $param->att_data))
+				{
+					
+				}
+				else 
+				{
+					?>
+					<div class="drop"> 
+						<input type="image" title="Удалить" src="/sites/<?php echo $_SITE."/".$_ENTERPOINT; ?>/images/delete.jpg" />
+					</div>
+					<?php 
+				}
+				?>
+				
+				</div>
+				<?php 
+			}
+			?>
+			<div class="adding_block" style="display:none">
+				<div class="array_item">
+					<div class="textbox">
+					<input type="text" name="params[<?php echo $param->name; ?>][]" value="" />
+					</div>
+					<div class="drop"> 
+						<input type="image" title="Удалить" src="/sites/<?php echo $_SITE."/".$_ENTERPOINT; ?>/images/delete.jpg" />
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<input type="button" value="Добавить" class="btn_add"/>
+		<?php 		
 	}
 	
 	VAR $pagename="Информация";

@@ -1,0 +1,5 @@
+<?php
+
+$_TITLE = "{_TITLE_}";
+$_SLOGAN = "{_SLOGAN_}";
+?>

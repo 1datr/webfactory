@@ -10,15 +10,16 @@ class wfp_param
 	VAR $description;	// describe of field
 	VAR $title;			// title of field
 	VAR $fieldclass;	// класс поля
+	VAR $att_data;
 	
-	function __construct($name,$value,$title,$lib,$describe=NULL,$fieldclass="text")
+	function __construct($name,$value,$title,$lib,$describe=NULL,$att_data=NULL)
 	{
 		$this->name = $name;
 		$this->value = $value;
 		$this->title = $title;
 		$this->lib = $lib;
 		$this->description = $describe;
-		$this->fieldclass = $fieldclass;
+		$this->att_data = $att_data;
 	}
 }
 // class of webfactory project

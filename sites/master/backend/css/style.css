@@ -215,3 +215,27 @@ div#menu ul li a:active {
 	color: #dd2f22;
 	background-color: #dfdfff;	
 }
+/* arraybox */
+div#array_box_enterpoints input[type="image"] {
+	
+}
+
+div#array_box_enterpoints div.array_item {
+	padding: 0px;
+}
+
+div#array_box_enterpoints div#array_item input[type="text"] {
+	margin-top:0px;
+}
+
+div#array_box_enterpoints div.array_item div.textbox {
+	margin-top:0px;
+	margin-bottom:0px;
+	display:inline;
+}
+
+div#array_box_enterpoints div.array_item div.drop {
+	margin-top:0px;
+	margin-bottom:0px;
+	display:inline;
+}

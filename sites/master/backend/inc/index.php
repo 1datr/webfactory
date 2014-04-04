@@ -15,13 +15,10 @@ function head($title)
 	
 	<script src="<?php echo nestedurl("js/jquery.js");?>" type="text/javascript"></script>
 	<script src="<?php echo nestedurl("js/jquery-ui.min.js");?>" type="text/javascript"></script>
+	<script src="<?php echo nestedurl("js/lib.js");?>" type="text/javascript"></script>
 
 	<script type="text/javascript">
-	$(document).ready(function() {
-		  // Handler for .ready() called.		
-		$('.htabs').tabs();
-		$('.vtabs').tabs().addClass('ui-tabs-vertical ui-helper-clearfix');
-	});
+	
 	</script>
 	
 	</head>
