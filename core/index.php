@@ -257,9 +257,12 @@ function makesite($sitename,$epoints = NULL)
 	}
 	foreach($epoints as $p)
 	{
-		mkdir("./sites/$sitename/$p");
-		mkdir("./sites/$sitename/$p/pages");
-		file_put_contents("./sites/$sitename/$p/pages/index.php", "<?php ?>");
+		if(!file_exists("./sites/$sitename/$p"))
+			mkdir("./sites/$sitename/$p");
+		if(!file_exists("./sites/$sitename/$p/pages"))
+			mkdir("./sites/$sitename/$p/pages");
+		if(!file_exists("./sites/$sitename/$p/pages/index.php"))
+			file_put_contents("./sites/$sitename/$p/pages/index.php", "<?php ?>");
 	}
 }
 // wrie file in site 

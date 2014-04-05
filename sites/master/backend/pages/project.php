@@ -26,12 +26,31 @@ foreach($LIBS as $lib)
 $project = loadproject($proj);
 
 // save the project in file
+//var_dump($_POST);
+
 if(!empty($_POST['subm_save']))
 {
-	foreach($_POST['params'] as $idx => $val)
+	$keys = array_keys($_POST['params']);
+	//var_dump($keys);
+	foreach($keys as $idx)
 	{
+		//var_dump($idx);
+		if(is_array($_POST['params'][$idx]))
+		{
+			foreach($_POST['params'][$idx] as $idx2 => $v)
+			{
+				if($v=="")
+					unset($_POST['params'][$idx][$idx2]);
+			}
+		}
+		$project->params[$idx]->value = $_POST['params'][$idx];
+	}
+	
+	foreach($_POST['params'] as $idx => $val)
+	{		
 		$project->params[$idx]->value = $val;
 	}	
+	
 	
 	$project->save();
 	redirect($_SERVER['HTTP_REFERER']);
@@ -39,11 +58,25 @@ if(!empty($_POST['subm_save']))
 // compile the project
 if(!empty($_POST['subm_compile']))
 {
-	foreach($_POST['params'] as $idx => $val)
+	$keys = array_keys($_POST['params']);
+	//var_dump($keys);
+	foreach($keys as $idx)
 	{
-		$project->params[$idx]->value = $val;
+		//var_dump($idx);
+		if(is_array($_POST['params'][$idx]))
+		{
+			foreach($_POST['params'][$idx] as $idx2 => $v)
+			{
+				if($v=="")
+					unset($_POST['params'][$idx][$idx2]);
+			}
+		}
+		$project->params[$idx]->value = $_POST['params'][$idx];
 	}
 	
+	
+	$project->save();
+	//var_dump($project->params["enterpoints"]);
 	if($_POST['_SITE']=='&newsite')
 	{
 		$_POST['_SITE']=$_POST['newsitename'];
@@ -57,7 +90,7 @@ if(!empty($_POST['subm_compile']))
 
 
 <h2>опнейр <?php  echo $proj; ?></h2>
-<form method="post" id="proj_form">
+<form method="post" id="proj_form" enctype="multipart/form-data">
 
 <div>
 

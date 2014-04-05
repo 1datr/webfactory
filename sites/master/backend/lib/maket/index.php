@@ -11,6 +11,10 @@ class wfl_maket extends wf_lib {
 			);
 	}
 	
+	function make_base_hook($params=NULL)
+	{
+		
+	}
 	
 	VAR $pagename="Макет";
 }

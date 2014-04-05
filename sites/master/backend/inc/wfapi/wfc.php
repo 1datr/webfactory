@@ -171,15 +171,22 @@ class wf_lib
 			<th><?php echo $project->params[$fld->name]->title; ?></th>
 			<td>			
 			<?php 
-			$ftype = gettype($project->params[$fld->name]->value);
-			$ftclass = "wfp_fc_$ftype";
-			$fc = new $ftclass();
-			
 			$draw_fun_name = "fld_".$fld->name."_input_draw";
+			
 			if(method_exists($this,$draw_fun_name))
 				$this->$draw_fun_name($project->params[$fld->name]);
-			else	
-				$fc->draw($project->params[$fld->name]);
+			else
+			{
+				//var_dump($project->params[$fld->name]);
+				$ftype = gettype($project->params[$fld->name]->value);
+				
+				$ftclass = "wfp_fc_$ftype";
+				if(class_exists($ftclass))
+				{
+					$fc = new $ftclass();
+					$fc->draw($project->params[$fld->name]);
+				}
+			}				
 			?>
 			</td>
 			</tr>

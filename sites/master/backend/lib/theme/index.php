@@ -25,6 +25,11 @@ class wfl_theme extends wf_lib {
 		
 	}
 	
+	function make_base_hook($params=NULL)
+	{
+	
+	}
+	
 	VAR $pagename="Тема";
 }
 ?>

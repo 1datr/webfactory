@@ -15,14 +15,15 @@ class wfl_info extends wf_lib {
 	function hook_compile($_params)
 	{
 		echo "<h2>COMPILING</h2>";
-		print_r($_params);
-		makesite($_params['SITE'],$this->params['enterpoints']);
+	//var_dump($this->params);
+		makesite($_params['SITE'],$_params['PROJECT']->params['enterpoints']->value);
 		write_file($_params['SITE'],NULL,"config.php",
 					$this->parse_temp("config",
 						Array(
 							"TITLE"=>$_params['PROJECT']->params['sitename']->value,
 							"SLOGAN"=>$_params['PROJECT']->params['moto']->value,
 						)));
+		$this->gen_hook("make_base",Array('libfrom'=>'info','project'=>$_params['PROJECT']));
 	}
 	
 	function fld_enterpoints_input_draw($param)
@@ -34,18 +35,19 @@ class wfl_info extends wf_lib {
 		?>
 		<div id="array_box_<?php echo $param->name; ?>" class="arraybox">
 		<?php 
+		//var_dump($param);
 			foreach ($param->value as $ep)
 			{
 				//	var_dump($param);
 				$readonly = "";
 				if(in_array($ep, $param->att_data)) 
 				{
-					$readonly =" readonly disabled=\"disabled\"";
+					$readonly =" readonly";
 				}
 				?>
 				<div class="array_item">
 				<div class="textbox">
-				<input type="text" name="params[<?php echo $param->name; ?>][]"<?php echo $readonly; ?> value="<?php echo $ep; ?>" />
+				<input type="text" name="params[<?php echo $param->name; ?>][]" <?php echo $readonly; ?> value="<?php echo $ep; ?>" />
 				</div>
 				<?php 
 				if(in_array($ep, $param->att_data))

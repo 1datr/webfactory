@@ -48,7 +48,7 @@ class wf_project {
 	function save($filename=NULL)
 	{
 		if($filename==NULL)
-			$filename = mydir()."/projects/".$this->name."/index.prj";
+			$filename = mydir()."projects/".$this->name."/index.prj";
 		file_put_contents($filename, serialize($this));
 	}
 	
