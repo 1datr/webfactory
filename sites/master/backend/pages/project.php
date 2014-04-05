@@ -89,36 +89,49 @@ if(!empty($_POST['subm_compile']))
 ?>
 
 
+<div class="row">
 <h2>ПРОЕКТ <?php  echo $proj; ?></h2>
-<form method="post" id="proj_form" enctype="multipart/form-data">
+</div>
 
-<div>
 
-<div class="section" id="pnl_left">
+<form method="post" enctype="multipart/form-data">
 
-	<div id="tabs" class="htabs">
-    <ul>
+
+<div class="row">
+	<div class="span10">
+		<div class="tabbable tabs-left">
+    	<ul class="nav nav-tabs">
     <?php 
+    /*  nav-stacked */
     $i = 0;
 	foreach($_LIBS as $key => $lib)
 	{ 
+		if($i==0)
+			$active = " class=\"active\"";
+		else 
+			$active = "";
 		?>
-		<li><a href="#tabs-<?php echo $i;?>"><?php echo $lib->pagename; ?> </a></li>
+		<li<?php echo $active; ?>><a href="#tab-<?php echo $key;?>" data-toggle="tab"><?php echo $lib->pagename; ?> </a></li>
 	<?php 	
 	$i++;
 	}
 ?>       
 		
-    </ul>
-    
+    	</ul>
+
+    <div class="tab-content">
     <?php 
     $i = 0;
 	foreach($_LIBS as $key => $lib)
 	{ 
 		$pagelist = $lib->getpages();
+		$active = "";
+		if($i==0)
+			$active = " active";
+		
 		?>
-		<div id="tabs-<?php echo $i;?>">
-		<p>
+		<div class="tab-pane<?php echo $active;?>" id="tab-<?php echo $key;?>">
+
 		<?php 
 		if(count($pagelist)==1)
 		{
@@ -127,78 +140,85 @@ if(!empty($_POST['subm_compile']))
 		}
 		else 
 		{
-		?>
-			<div id="tabs<?php echo $i;?>" class="vtabs">
-			<ul class="ui-tabs-vertical">
+			?>
+			<ul  class="nav nav-tabs">
 			<?php 
 			
 			$j=0;
 			foreach($pagelist as $page)
-				{
+				{					
 				?>
-					<li><a href="#tabs-<?php echo $i;?><?php echo $j;?>"><?php echo $page['title']; ?></a></li>
+					<li><a href="#tab-<?php echo $i;?>-<?php echo $j;?>"><?php echo $page['title']; ?></a></li>
 				<?php 
 				$j++;
 				}
 			?>
-			</ul>	
-			<?php 
+			</ul>
+			<div class="tab-content">
+			<?php
 			$j=0;
 			foreach($pagelist as $page)
 				{
-					$pagefun = "page_".$page['name'];
+				$pagefun = "page_".$page['name'];
 				?>
-				<div id="tabs-<?php echo $i;?><?php echo $j;?>">
-                    <p><?php $lib->$pagefun($project); ?></p>
-                </div>				
+				<div id="tab-pane tab-<?php echo $i;?>-<?php echo $j;?>">
+				<?php 
+			    $pagefun = "page_".$page['name'];	
+			    $lib->$pagefun($project); 
+			    ?>
+			    </div>				
 				<?php 
 				$j++;
 				}
-			?>
-            </div>  
-            <?php 
+				?>
+			</div>	
+			<?php 
 		}
-            ?> 		
-		</p>
+			?>
+				
 		</div>		
-		<?php 
-		$i++;
+	<?php 
+	$i++;
 	}
 		?>    
 	</div>
+	</div>
+	</div>
 
-
-</div><!-- .section -->  
-
-<div id="pnl_right">
-<h3>Сайт куда компилировать</h3>
-<ul id="dst_site">
-<?php 
-$sites = scandir("./sites");
-$i=0;
-foreach ($sites as $site)
-{
-	if(($site!='..') && ($site!='.') && ($site!=$_SITE))
-	{
-		if($i==0) $checked = "checked"; else $checked = "";
-	?>
-	<li><input type="radio" name="_SITE" value="<?php echo $site; ?>" <?php echo $checked; ?>/><label><?php echo $site; ?></label></li>
-	<?php
-	$i++;
-	} 
-} 
-?>
-<li><input type="radio" name="_SITE" value="&newsite"/><label>Новый сайт</label><br />
-<input type="text" name="newsitename" value=""/>
-</li>
-</ul>
+	<div class="span2">
+	<h3>Сайт куда компилировать</h3>
+		<ul id="dst_site">
+			<?php 
+			$sites = scandir("./sites");
+			$i=0;
+			foreach ($sites as $site)
+			{
+				if(($site!='..') && ($site!='.') && ($site!=$_SITE))
+				{
+					if($i==0) $checked = "checked"; else $checked = "";
+				?>
+				<li><input type="radio" name="_SITE" value="<?php echo $site; ?>" <?php echo $checked; ?>/><label><?php echo $site; ?></label></li>
+				<?php
+				$i++;
+				} 
+			} 
+			?>
+			<li>
+				<input type="radio" name="_SITE" value="&newsite"/><label>Новый сайт</label><br />
+				<input type="text" name="newsitename" value=""/>
+			</li>
+		</ul>
+	</div>
 </div>
+    
 
-</div>
+	
+	<div class="row">
+	<input type="submit" name="subm_save" value="Сохранить" />
+	<input type="submit" name="subm_compile" value="Скомпилировать" />
+	
 
-<div>
-<input type="submit" name="subm_save" value="Сохранить" />
-<input type="submit" name="subm_compile" value="Скомпилировать" />
-</div>
+	
+	</div>
 </form>
-
+</div>	

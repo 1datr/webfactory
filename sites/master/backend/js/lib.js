@@ -1,7 +1,7 @@
 $(document).ready(function() {
 		  // Handler for .ready() called.		
-		$('.htabs').tabs();
-		$('.vtabs').tabs().addClass('ui-tabs-vertical ui-helper-clearfix');
+		/*$('.htabs').tabs();
+		$('.vtabs').tabs().addClass('ui-tabs-vertical ui-helper-clearfix');*/
 		
 		$('.arraybox input[type="image"]').click(function () {
 			 $(this).parent().parent('div.array_item').remove();
