@@ -11,14 +11,11 @@ function head($title)
 	<meta http-equiv="Content-type" content="text/html; charset=cp1251"/>
 			
 	<link type="text/css" rel="stylesheet" href="<?php echo nestedurl("css/bootstrap.css");?>" media="all" />
-	<link type="text/css" rel="stylesheet" href="<?php echo nestedurl("bootstrap/css/bootstrap-responsive.css");?>" media="all" />
+	<link type="text/css" rel="stylesheet" href="<?php echo nestedurl("css/bootstrap-responsive.css");?>" media="all" />
 	<link type="text/css" rel="stylesheet" href="<?php echo nestedurl("css/style.css");?>" media="all" />
 	
-	<script src="<?php echo nestedurl("js/jquery.js");?>" type="text/javascript"></script>
-	<script src="<?php echo nestedurl("bootstrap/js/bootstrap.min.js");?>" type="text/javascript"></script>
-	<script src="<?php echo nestedurl("bootstrap/js/bootstrap-tabs.js");?>" type="text/javascript"></script>
-	<script src="<?php echo nestedurl("bootstrap/js/watch.js");?>" type="text/javascript"></script>
-	<script src="<?php echo nestedurl("bootstrap/js/widgets.js");?>" type="text/javascript"></script>
+	<script src="<?php echo nestedurl("js/jquery.min.js");?>" type="text/javascript"></script>
+	<script src="<?php echo nestedurl("js/bootstrap/bootstrap.min.js");?>" type="text/javascript"></script>
 	<script src="<?php echo nestedurl("js/lib.js");?>" type="text/javascript"></script>
 
 	<script type="text/javascript">
@@ -37,6 +34,13 @@ function head($title)
 				
 <?php 
 /*
+ 
+ <script src="<?php echo nestedurl("bootstrap/js/bootstrap-tabs.js");?>" type="text/javascript"></script>
+	<script src="<?php echo nestedurl("bootstrap/js/watch.js");?>" type="text/javascript"></script>
+	<script src="<?php echo nestedurl("bootstrap/js/widgets.js");?>" type="text/javascript"></script>
+	
+ 
+ * 
  * <script src="<?php echo nestedurl("bootstrap/js/bootstrap-tabs.js");?>" type="text/javascript"></script>
  * 
  	<link type="text/css" rel="stylesheet" href="<?php echo nestedurl("css/jquery-ui.css");?>" media="all" />	

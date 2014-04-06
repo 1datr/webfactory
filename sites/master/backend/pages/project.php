@@ -1,4 +1,6 @@
 <?php 
+
+
 $proj = getarg(0, 'proj');
 
 head($proj);
@@ -86,11 +88,22 @@ if(!empty($_POST['subm_compile']))
 	redirect($_SERVER['HTTP_REFERER']);
 }
 
+
+//set_include_path(mydir()."phpbootstrap/");
+use BootstrapPHP\BootstrapPHP;
+
+
+include mydir().'BootstrapPHP/BootstrapPHP.php';
+
+BootstrapPHP::register_autoload();
+
+use BootstrapPHP\Tabs;
 ?>
 
 
 <div class="row">
 <h2>опнейр <?php  echo $proj; ?></h2>
+
 </div>
 
 
@@ -99,90 +112,63 @@ if(!empty($_POST['subm_compile']))
 
 <div class="row">
 	<div class="span10">
-		<div class="tabbable tabs-left">
-    	<ul class="nav nav-tabs">
-    <?php 
-    /*  nav-stacked */
-    $i = 0;
+	
+	
+	<?
+	$tabs_libs = new Tabs();
+	//var_dump($tabs_libs);
+	$tabs_libs->setDirection(Tabs::DIRECTION_LEFT);	
+	
+	
+	$i=0;
 	foreach($_LIBS as $key => $lib)
-	{ 
-		if($i==0)
-			$active = " class=\"active\"";
-		else 
-			$active = "";
-		?>
-		<li<?php echo $active; ?>><a href="#tab-<?php echo $key;?>" data-toggle="tab"><?php echo $lib->pagename; ?> </a></li>
-	<?php 	
-	$i++;
-	}
-?>       
-		
-    	</ul>
-
-    <div class="tab-content">
-    <?php 
-    $i = 0;
-	foreach($_LIBS as $key => $lib)
-	{ 
+	{
 		$pagelist = $lib->getpages();
-		$active = "";
-		if($i==0)
-			$active = " active";
-		
-		?>
-		<div class="tab-pane<?php echo $active;?>" id="tab-<?php echo $key;?>">
-
-		<?php 
 		if(count($pagelist)==1)
 		{
 			$pagefun = "page_".$pagelist[0]['name'];
-			$lib->$pagefun($project);
-		}
-		else 
-		{
-			?>
-			<ul  class="nav nav-tabs">
-			<?php 
 			
-			$j=0;
-			foreach($pagelist as $page)
-				{					
-				?>
-					<li><a href="#tab-<?php echo $i;?>-<?php echo $j;?>"><?php echo $page['title']; ?></a></li>
-				<?php 
-				$j++;
-				}
-			?>
-			</ul>
-			<div class="tab-content">
-			<?php
-			$j=0;
-			foreach($pagelist as $page)
-				{
-				$pagefun = "page_".$page['name'];
-				?>
-				<div id="tab-pane tab-<?php echo $i;?>-<?php echo $j;?>">
-				<?php 
-			    $pagefun = "page_".$page['name'];	
-			    $lib->$pagefun($project); 
-			    ?>
-			    </div>				
-				<?php 
-				$j++;
-				}
-				?>
-			</div>	
-			<?php 
+			ob_start();
+			$lib->$pagefun($project);
+			$var = ob_get_contents();
+			ob_end_clean();
+			if($i==0)
+				$tabs_libs->addContentItem($lib->pagename, "page_".$key, $var, false, true);
+			else 
+				$tabs_libs->addContentItem($lib->pagename, "page_".$key, $var, false);
+			
 		}
-			?>
-				
-		</div>		
-	<?php 
-	$i++;
+		else
+		{
+			$tabs_pages = new Tabs();
+			$tabs_pages->setDirection(Tabs::DIRECTION_DEFAULT);
+			$j=0;
+			foreach($pagelist as $pidx => $page)
+				{
+					$pagefun = "page_".$page['name'];
+					
+					ob_start();
+					$pagefun = "page_".$page['name'];	
+					$lib->$pagefun($project); 
+					$var = ob_get_contents();
+					ob_end_clean();
+					
+					if($j==0)
+						$tabs_pages->addContentItem($page['title'], "page_".$key."_".$pidx, $var, false, true);
+					else
+						$tabs_pages->addContentItem($page['title'], "page_".$key."_".$pidx, $var, false);				
+				$j++;
+				}
+			
+			if($i==0)
+				$tabs_libs->addContentItem($lib->pagename, "page_".$key, $tabs_pages->toHtml(), false, true);
+			else
+				$tabs_libs->addContentItem($lib->pagename, "page_".$key, $tabs_pages->toHtml(), false);
+		}
+		$i++;
 	}
-		?>    
-	</div>
-	</div>
+	echo $tabs_libs->toHtml();
+?>
 	</div>
 
 	<div class="span2">
