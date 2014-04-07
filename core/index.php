@@ -291,4 +291,38 @@ function mydir()
 	GLOBAL $_ENTERPOINT;
 	return "./sites/$_SITE/$_ENTERPOINT/";
 }
+
+function addscript($script)
+{
+	?>
+	<script type="text/javascript">
+	jQuery(document).ready(function ($) { 
+		addscript("<?php echo nestedurl($script); ?>");
+	})(jQuery);
+	</script>	
+	<?php 	
+}
+
+
+function js_fragment($script)
+{
+	?>
+	<script type="text/javascript">
+	jQuery(document).ready(function ($) { 
+		<?php echo $script; ?>
+	})(jQuery);
+	</script>	
+	<?php 	
+}
+
+function addcss($script)
+{
+	?>
+	<script type="text/javascript">
+	jQuery(document).ready(function ($) { 
+		addcss("<?php echo nestedurl($script); ?>");
+	})(jQuery);		
+	</script>	
+	<?php 	
+}
 ?>

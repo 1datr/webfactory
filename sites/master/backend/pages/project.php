@@ -9,6 +9,7 @@ foreach($wfapi_files as $file)
 	if($file!='.'&& $file!='..')
 		require_once mydir()."/inc/wfapi/".$file;
 	
+
 // load all default libs	
 $_LIBS = Array();
 
@@ -27,8 +28,16 @@ foreach($LIBS as $lib)
 
 $project = loadproject($proj);
 
-// save the project in file
-//var_dump($_POST);
+
+
+addcss("css/bootstrap.css");
+addcss("css/bootstrap-responsive.css");
+addcss("css/style.css");
+
+addscript("js/bootstrap/bootstrap.min.js");
+addscript("js/lib.js");
+
+
 
 if(!empty($_POST['subm_save']))
 {

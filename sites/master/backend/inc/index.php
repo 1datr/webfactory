@@ -8,20 +8,15 @@ function head($title)
 	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" version="XHTML+RDFa 1.0" dir="ltr">
 	<head>
 	<title><?php echo $title; ?></title>
-	<meta http-equiv="Content-type" content="text/html; charset=cp1251"/>
-			
-	<link type="text/css" rel="stylesheet" href="<?php echo nestedurl("css/bootstrap.css");?>" media="all" />
-	<link type="text/css" rel="stylesheet" href="<?php echo nestedurl("css/bootstrap-responsive.css");?>" media="all" />
-	<link type="text/css" rel="stylesheet" href="<?php echo nestedurl("css/style.css");?>" media="all" />
-	
+	<meta http-equiv="Content-type" content="text/html; charset=cp1251"/>			
 	<script src="<?php echo nestedurl("js/jquery.min.js");?>" type="text/javascript"></script>
-	<script src="<?php echo nestedurl("js/bootstrap/bootstrap.min.js");?>" type="text/javascript"></script>
-	<script src="<?php echo nestedurl("js/lib.js");?>" type="text/javascript"></script>
-
+	<script src="<?php echo nestedurl("js/base.js");?>" type="text/javascript"></script>
 	<script type="text/javascript">
-	
+		
 	</script>
-	
+		<link type="text/css" rel="stylesheet" href="<?php echo nestedurl("css/style.css");?>" media="all" />
+		<link type="text/css" rel="stylesheet" href="<?php echo nestedurl("css/bootstrap.css");?>" media="all" />
+		<link type="text/css" rel="stylesheet" href="<?php echo nestedurl("css/bootstrap-responsive.css");?>" media="all" />
 	</head>
 			<body>
 						
@@ -34,6 +29,17 @@ function head($title)
 				
 <?php 
 /*
+ 
+	<link type="text/css" rel="stylesheet" href="<?php echo nestedurl("css/bootstrap-responsive.css");?>" media="all" />
+	<link type="text/css" rel="stylesheet" href="<?php echo nestedurl("css/fuelux.css");?>" media="all" />
+	<link type="text/css" rel="stylesheet" href="<?php echo nestedurl("css/fuelux-responsive.css");?>" media="all" />
+	<link type="text/css" rel="stylesheet" href="<?php echo nestedurl("css/style.css");?>" media="all" />
+	
+	
+	<script src="<?php echo nestedurl("js/bootstrap/bootstrap.min.js");?>" type="text/javascript"></script>
+	<script src="<?php echo nestedurl("js/lib.js");?>" type="text/javascript"></script>
+ 
+ 
  
  <script src="<?php echo nestedurl("bootstrap/js/bootstrap-tabs.js");?>" type="text/javascript"></script>
 	<script src="<?php echo nestedurl("bootstrap/js/watch.js");?>" type="text/javascript"></script>
@@ -60,8 +66,9 @@ $menu_array = Array(
 	"Модули"=>getownurl(null,"modules"),
 );				
 ?>
+				<div class="row">
 				<div class="navbar">
-				<div class="container">
+				
 				<ul class="nav nav-tabs">
 				<?php 
 				if(!empty($_SESSION['authed']))
