@@ -101,7 +101,7 @@ $menu_array = Array(
 if(empty($_SESSION['authed'])&&($_PAGE!='/auth.php'))
 {
 	//echo geturl(null,"auth",$_SITE,$_ENTERPOINT);
-	print_r($_SERVER);
+	//print_r($_SERVER);
 	$_SESSION['REDIRECT_URL'] = $_SERVER['REDIRECT_URL'];
 	redirect(getownurl(null,"auth"));
 }

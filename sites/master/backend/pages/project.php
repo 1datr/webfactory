@@ -69,21 +69,12 @@ if(!empty($_POST['subm_save']))
 // compile the project
 if(!empty($_POST['subm_compile']))
 {
-	$keys = array_keys($_POST['params']);
-	//var_dump($keys);
-	foreach($keys as $idx)
+	foreach($_LIBS as $libidx => $lib)
 	{
-		//var_dump($idx);
-		if(is_array($_POST['params'][$idx]))
-		{
-			foreach($_POST['params'][$idx] as $idx2 => $v)
-			{
-				if($v=="")
-					unset($_POST['params'][$idx][$idx2]);
-			}
-		}
-		$project->params[$idx]->value = $_POST['params'][$idx];
+		$lib->gather_form_data();
 	}
+	
+	
 	
 	
 	$project->save();
@@ -184,7 +175,8 @@ use BootstrapPHP\Tabs;
 
 	<div class="span2">
 	<h3>Сайт куда компилировать</h3>
-		<ul id="dst_site">
+	<div class="btn-group" data-toggle="buttons" style="width:100%;display:inline;">
+
 			<?php 
 			$sites = scandir("./sites");
 			$i=0;
@@ -194,19 +186,26 @@ use BootstrapPHP\Tabs;
 				{
 					if($i==0) $checked = "checked"; else $checked = "";
 				?>
-				<li><input type="radio" name="_SITE" value="<?php echo $site; ?>" <?php echo $checked; ?>/><label><?php echo $site; ?></label></li>
+				
+				<label  class="btn btn-primary">
+				<input type="radio" name="_SITE" value="<?php echo $site; ?>" <?php echo $checked; ?>/>&nbsp;<?php echo $site; ?>
+				</label>
+							
 				<?php
+				/* </li> */
 				$i++;
 				} 
 			} 
 			?>
-			<li>
+
+				<label class="btn btn-primary">
+					<input type="radio" name="_SITE" value="&newsite" />&nbsp;Новый сайт<br />
+					
+				</label>
 				
-					<input type="radio" name="_SITE" value="&newsite" /><label>Новый сайт</label><br />
-					<input type="text" name="newsitename" value=""  />
-				
-			</li>
-		</ul>
+				<input type="text" name="newsitename" value=""  />
+
+	</div>
 	</div>
 </div>
     

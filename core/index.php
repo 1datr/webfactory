@@ -315,6 +315,28 @@ function js_fragment($script)
 	<?php 	
 }
 
+function jq_bind_event($selector,$script,$onlycode=FALSE,$evtype="click")
+{
+	if($onlycode==TRUE)
+	{
+		return "$('".$selector."').".$evtype."(function(){
+					".$script."
+				});";
+	}
+	else
+	{
+		?>
+		<script type="text/javascript">
+		jQuery(document).ready(function ($) { 
+			$("<?php echo $selector;?>").<?php echo $evtype; ?>(function(){
+					<?php echo $script; ?>
+				});
+		})(jQuery);
+		</script>	
+		<?php
+	} 	
+}
+
 function addcss($script)
 {
 	?>

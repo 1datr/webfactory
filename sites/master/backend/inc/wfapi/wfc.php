@@ -209,7 +209,21 @@ class wf_lib
 	// собрать данные для библиотеки из формы
 	function gather_form_data()
 	{
-		
+		$keys = array_keys($_POST['params']);
+		//var_dump($keys);
+		foreach($keys as $idx)
+		{
+			//var_dump($idx);
+			if(is_array($_POST['params'][$idx]))
+			{
+				foreach($_POST['params'][$idx] as $idx2 => $v)
+				{
+					if($v=="")
+						unset($_POST['params'][$idx][$idx2]);
+				}
+			}
+			$project->params[$idx]->value = $_POST['params'][$idx];
+		}
 	}
 	
 	VAR $pagename="";

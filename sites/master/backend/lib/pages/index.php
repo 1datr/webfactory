@@ -65,7 +65,9 @@ class wfl_pages extends wf_lib {
 								else 
 								{
 									?>
-									<span class="badge badge-success"><i class="icon-folder-open"></i><input type="text" name="" value="<?php echo $key; ?>" /></span>								
+									<span class="badge badge-success"><i class="icon-folder-open"></i><input type="text" name="" value="<?php echo $key; ?>" /></span>
+									<button type="button" class="btn btn-inverse btn-mini btn-add-branch"><i class="icon-white icon-plus-sign"></i></button>
+									<button type="button" class="btn btn-primary btn-mini btn-drop_branch"><i class="icon-white icon-remove-sign"></i></button>								
 									<?php	
 								}
 									
@@ -82,7 +84,9 @@ class wfl_pages extends wf_lib {
 								else 
 								{
 									?>
-									<span class="badge badge-success"><i class="icon-leaf"></i><input type="text" name="" value="<?php echo $pages; ?>" /></a></span>								
+									<span class="badge badge-success"><i class="icon-leaf"></i><input type="text" name="" value="<?php echo $pages; ?>" /></a></span>
+									<button type="button" class="btn btn-inverse btn-mini btn-add-branch"><i class="icon-white icon-plus-sign"></i></button>
+									<button type="button" class="btn btn-primary btn-mini btn-drop_branch"><i class="icon-white icon-remove-sign"></i></button>								
 									<?php
 								}
 								
@@ -111,7 +115,7 @@ class wfl_pages extends wf_lib {
 			}
 			
 			?>
-		<div class="tree well">
+		<div class="tree well" id="pagetree">
 		<ul>
         <li>
             <span><i class="icon-folder-open"></i> Страницы</span>
@@ -134,6 +138,7 @@ class wfl_pages extends wf_lib {
 								{	
 									?>
 									<span class="badge "><i class="icon-minus-sign"></i>&nbsp;<?php echo $key; ?></span>
+									<button type="button" class="btn btn-inverse btn-mini btn-add-branch"><i class="icon-white icon-plus-sign"></i></button>			
 									<?php 
 								}
 								?>
@@ -161,10 +166,25 @@ class wfl_pages extends wf_lib {
 ?>
    		</li>
    		</ul>
+   		
+   		<div class="addingpage" style="display: none;">
+   			<span class="badge "><i class="icon-minus-sign"></i>&nbsp;<input type="text" name="" value="" /></span>
+			<button type="button" class="btn btn-inverse btn-mini btn-add-branch"><i class="icon-white icon-plus-sign"></i></button>	
+			<button type="button" class="btn btn-primary btn-mini btn-drop_branch"><i class="icon-white icon-remove-sign"></i></button>								
+   		</div>
 	</div>
 	<?php 
 	}
 	
 	VAR $pagename="Страницы";
 }
+jq_bind_event('.btn-add-branch', "
+				branchhtml = $('#pagetree .addingpage').html();				
+				$(this).parent().children('ul').append('<li>'+branchhtml+'</li>');
+				".jq_bind_event('.btn-drop_branch', "
+				$(this).parent().remove();
+				",TRUE));
+jq_bind_event('.btn-drop_branch', "
+				$(this).parent().remove();
+				");
 ?>
