@@ -196,6 +196,21 @@ class wf_lib
 		</table>
 		<?php
 	}
+	// required libs
+	function req_libs()
+	{
+		return Array();
+	}
+	// после загрузки библы
+	function after_load()
+	{
+		
+	}
+	// собрать данные для библиотеки из формы
+	function gather_form_data()
+	{
+		
+	}
 	
 	VAR $pagename="";
 	VAR $version = "1.0";

@@ -111,8 +111,10 @@ use BootstrapPHP\Tabs;
 
 
 <div class="row">
-<h2>ПРОЕКТ <?php  echo $proj; ?></h2>
-
+	<div class="page-header">
+	 
+	<h1>ПРОЕКТ <?php  echo $proj; ?></h1>
+	</div>
 </div>
 
 
@@ -199,8 +201,10 @@ use BootstrapPHP\Tabs;
 			} 
 			?>
 			<li>
-				<input type="radio" name="_SITE" value="&newsite"/><label>Новый сайт</label><br />
-				<input type="text" name="newsitename" value=""/>
+				
+					<input type="radio" name="_SITE" value="&newsite" /><label>Новый сайт</label><br />
+					<input type="text" name="newsitename" value=""  />
+				
 			</li>
 		</ul>
 	</div>
@@ -208,12 +212,14 @@ use BootstrapPHP\Tabs;
     
 
 	
-	<div class="row">
-	<input type="submit" name="subm_save" value="Сохранить" />
-	<input type="submit" name="subm_compile" value="Скомпилировать" />
-	
+<div class="row">
+	<div class="btn-group">
+		<input type="submit" name="subm_save" value="Сохранить" class="btn" />
+		<input type="submit" name="subm_compile" value="Скомпилировать" class="btn" />
+	</div>
 
 	
-	</div>
+</div>
+
 </form>
 </div>	

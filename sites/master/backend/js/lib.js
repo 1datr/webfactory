@@ -1,15 +1,19 @@
+function init_drop_hndlrs()
+{
+	$('.arraybox .btn-drop').click(function () {
 
+		 $(this).parent().parent('div.array_item').remove();
+
+		  return false;
+		});	
+}
 
 $(document).ready(function() {
 		  // Handler for .ready() called.		
 		/*$('.htabs').tabs();
 		$('.vtabs').tabs().addClass('ui-tabs-vertical ui-helper-clearfix');*/
 		
-		$('.arraybox input[type="image"]').click(function () {
-			 $(this).parent().parent('div.array_item').remove();
-
-			  return false;
-			});
+		init_drop_hndlrs();
 
 		$('.btn_add').click(function() {
 			
@@ -17,11 +21,7 @@ $(document).ready(function() {
 				//alert($(this).parent().children('div').children('.adding_block').html());
 				$(this).parent().children('div').append($(newelem));
 				
-				$('.arraybox input[type="image"]').click(function () {
-					 $(this).parent().parent('div.array_item').remove();
-
-					  return false;
-					});
+				init_drop_hndlrs();
 				return false;
 			});
 	});

@@ -58,7 +58,8 @@ class wfl_info extends wf_lib {
 				{
 					?>
 					<div class="drop"> 
-						<input type="image" title="Удалить" src="/sites/<?php echo $_SITE."/".$_ENTERPOINT; ?>/images/delete.jpg" />
+						
+						<button class="btn btn-info btn-small btn-drop" title="Удалить"><i class="icon-white icon-remove"></i></button>
 					</div>
 					<?php 
 				}
@@ -74,14 +75,15 @@ class wfl_info extends wf_lib {
 					<input type="text" name="params[<?php echo $param->name; ?>][]" value="" />
 					</div>
 					<div class="drop"> 
-						<input type="image" title="Удалить" src="/sites/<?php echo $_SITE."/".$_ENTERPOINT; ?>/images/delete.jpg" />
+					<button class="btn btn-info btn-small btn-drop" title="Удалить"><i class="icon-white icon-remove"></i></button>				
+										
 					</div>
 				</div>
 			</div>
 		</div>
 		
+		<button class="btn btn-primary btn-small btn_add"><i class="icon-white icon-plus-sign"></i> Добавить</button>
 		
-		<input type="button" value="Добавить" class="btn_add"/>
 		<?php 		
 	}
 	

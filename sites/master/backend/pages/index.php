@@ -15,8 +15,16 @@ if(!empty($_POST['delproj']))
 	redirect($_SERVER['HTTP_REFERER']);
 }
 ?>
-<h2>Проекты</h2>
-<table class="projects">
+<div class="row">
+	<div class="page-header">
+	 
+	<h1>Проекты</h1>
+	</div>
+</div>
+
+<div class="row">
+<div class="span4">
+<table class="table">
 <?php
 foreach($projdir as $proj)
 {
@@ -25,14 +33,26 @@ foreach($projdir as $proj)
 			echo "
 		<tr>
 			<td><a href=\"".getownurl(Array($proj),"project")."\">$proj</a></td>
-			<td><form class=\"frm_delproj\" method=\"post\"><input type=\"submit\" value=\"Удалить\" /><input type=\"hidden\" name=\"delproj\" value=\"$proj\"></form></td>
+			<td><form class=\"frm_delproj\" method=\"post\">
+			<button type=\"submit\" class=\"btn btn-inverse btn-small\"><i class=\"icon-white icon-remove-sign\"></i> Удалить</button>
+			
+			<input type=\"hidden\" name=\"delproj\" value=\"$proj\"></form></td>
 		</tr>";
 }
 ?>
 </table>
+
 <form method="post" action=""> 
-<input type="text" name="newprojname" /><input type="submit" value="Создать новый проект" />
+<div class="col-xs-6 col-md-6">
+	<div class="input-group-btn">
+            <input type="text" class="form-control" class="form-control input-lg" name="newprojname" placeholder="Новый проект" name="q">
+            <button type="submit" class="btn btn-success btn-small"><i class="icon-white icon-plus-sign"></i> Создать</button>
+    </div>
+</div>
 </form>
+
+</div>
+</div>
 
 </body>
 </html>

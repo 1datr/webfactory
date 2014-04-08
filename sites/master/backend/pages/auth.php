@@ -20,23 +20,43 @@ head("Авторизация");
 	}
 	
 	//print_r($_ARGS);
-	?>
-	<form method="post">
-	<?php 
+
 	if(!empty($_ARGS['requri']))
 		$requri = $_ARGS['requri'];
-	else 
+	else
 		$requri = "index";
-	?>
-	<input type="hidden" name="requri" value="<?php echo $requri; ?>" />
-	<table>
 	
-	<tr><th>Логин</th><td><input type="text" name="login" /></td></tr>
-	<tr><th>Пароль</th><td><input type="password" name="passw" /></td></tr>
-	<tr><td colspan="2"><input type="checkbox" name="remember" />&nbsp;Запомнить</td></tr>
-	<tr><th></th><td><input type="submit" value="Войти" /></td></tr>
-	</table>
-	</form>
+	?>
+	<div class="container">
+    <div class="row">
+		<div class="span4 offset4 well">
+			<input type="hidden" name="requri" value="<?php echo $requri; ?>" />
+			<legend>Авторизация</legend>
+			<?php 
+			if(!empty($error))
+			{
+				?>
+				<div class="alert alert-error">
+				     <a class="close" data-dismiss="alert" href="#">x</a><?php echo $error; ?>
+				</div>
+				<?php 
+			}
+			?>
+          	
+			<form method="POST" action="" accept-charset="UTF-8">
+			<input type="text" id="username" class="span4" name="login" placeholder="Логин">
+			<input type="password" id="password" class="span4" name="passw" placeholder="Пароль">
+            <label class="checkbox">
+            	<input type="checkbox" name="remember" value="1"> Запомнить
+            </label>
+			<button type="submit" name="submit" class="btn btn-info btn-block">Войти</button>
+			</form>    
+		</div>
+	</div>
+	</div>
+	
+	
+
 </body>
 
 </html>

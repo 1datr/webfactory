@@ -12,10 +12,11 @@ class wfl_pages extends wf_lib {
 	
 	function page_index($project)
 	{
+		addcss("bootstrap/css/bootstrap-combined.min.css");
 		/*addcss("css/fuelux.css");
 		addcss("css/fuelux-responsive.css");
 		addcss("css/style.css");
-		addcss("bootstrap/css/bootstrap-treeview.css");
+		
 		
 		addscript("bootstrap/js/blanket.min.js");
 		addscript("bootstrap/js/bootstrap-treeview.min.js");
@@ -54,17 +55,37 @@ class wfl_pages extends wf_lib {
 							
 							<?php 
 							if(is_array($pages))
-							{						
-								?>
-								<span class="badge badge-success"><i class="icon-minus-sign"></i><a href=""><?php echo $key; ?></a></span>								
-								<?php 	
+							{				
+								if($key=="index")
+								{
+									?>
+									<span class="badge badge-success"><i class="icon-folder-open"></i>&nbsp;<?php echo $key; ?></span>								
+									<?php	
+								}
+								else 
+								{
+									?>
+									<span class="badge badge-success"><i class="icon-folder-open"></i><input type="text" name="" value="<?php echo $key; ?>" /></span>								
+									<?php	
+								}
+									
 								drawnode($pages);
 							}
 							else 
 							{
-								?>
-								<span class="badge badge-success"><i class="icon-minus-sign"></i><a href=""><?php echo $pages; ?></a></span>								
-								<?php
+								if($key=="index")
+								{
+									?>
+									<span class="badge badge-success"><i class="icon-leaf"></i>&nbsp;<?php echo $pages; ?></a></span>								
+									<?php
+								}
+								else 
+								{
+									?>
+									<span class="badge badge-success"><i class="icon-leaf"></i><input type="text" name="" value="<?php echo $pages; ?>" /></a></span>								
+									<?php
+								}
+								
 							}
 							?>
 
@@ -80,7 +101,7 @@ class wfl_pages extends wf_lib {
 					//var_dump($arr);
 					?>
 					<li>
-					<span class="badge badge-success"><i class="icon-time"></i><a href=""><?php echo $arr; ?></a></span>
+					<span class="badge badge-success"><i class="icon-time"></i>&nbsp;<a href=""><?php echo $arr; ?></a></span>
 						<?php 
 							            
 						?>
@@ -93,7 +114,7 @@ class wfl_pages extends wf_lib {
 		<div class="tree well">
 		<ul>
         <li>
-            <span><i class="icon-calendar"></i> Страницы</span>
+            <span><i class="icon-folder-open"></i> Страницы</span>
     		<ul>	
 			<?php 
 			//GLOBAL $_LIBS;
@@ -103,7 +124,20 @@ class wfl_pages extends wf_lib {
 				{
 					?>
 					<li>
-						<span class="badge badge-success"><i class="icon-minus-sign"></i><a href=""><?php echo $key; ?></a></span>
+					<?php if($key=="index")
+								{
+									?>
+									<span class="badge"><i class="icon-minus-sign"></i><input type="text" name="" value="<?php echo $key; ?>" /></span>								
+									<?php									
+								}
+								else 
+								{	
+									?>
+									<span class="badge "><i class="icon-minus-sign"></i>&nbsp;<?php echo $key; ?></span>
+									<?php 
+								}
+								?>
+						
 					
 						<?php 
 						drawnode($ep);
@@ -116,7 +150,7 @@ class wfl_pages extends wf_lib {
 				{
 					?>
 					<li>
-						<span class="badge badge-success"><i class="icon-minus-sign"></i><a href=""><?php echo $ep; ?></a></span>
+						<span class="badge "><i class="icon-minus-sign"></i><a href="">&nbsp;<?php echo $ep; ?></a></span>
 		            	<?php 
 		            
 		            	?>

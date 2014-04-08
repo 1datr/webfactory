@@ -19,14 +19,24 @@ function head($title)
 		<link type="text/css" rel="stylesheet" href="<?php echo nestedurl("css/bootstrap-responsive.css");?>" media="all" />
 	</head>
 			<body>
-						
-				<div class="container">
+					
+				
+				<header>	
 					<div class="row" id="header">
 						<div id="header_nested">
-						
+							<div class="page-header">
+	
+								<div class="title">
+								<a href="/"><image border="0" src="/sites/master/backend/images/title.png" /></a>
+								</div>
+								
+							</div>
 						</div>
 					</div>
+			
+				</header>
 				
+				<div class="container">
 <?php 
 /*
  
