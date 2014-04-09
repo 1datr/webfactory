@@ -6,7 +6,7 @@ $_PARAMS = Array(
 		
 	'pagelist'=>Array(
 				'frontend'=>Array('index','auth','zakazi'),
-				'backend'=>Array('index'),
+				'backend'=>Array('index','regions'),
 				'install'=>Array('index'),
 		),
 		

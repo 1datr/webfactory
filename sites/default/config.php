@@ -1,5 +1,5 @@
 <?php
 
-$_TITLE = "Site1";
-$_SLOGAN = "Hello, world";
+$_TITLE = "My SITE";
+$_SLOGAN = "Hello, World";
 ?>

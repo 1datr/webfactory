@@ -23,7 +23,7 @@ class wfl_info extends wf_lib {
 							"TITLE"=>$_params['PROJECT']->params['sitename']->value,
 							"SLOGAN"=>$_params['PROJECT']->params['moto']->value,
 						)));
-		$this->gen_hook("make_base",Array('libfrom'=>'info','project'=>$_params['PROJECT']));
+		$this->gen_hook("make_base",Array('libfrom'=>'info','project'=>$_params['PROJECT'],'siteto'=>$_params['SITE']));
 	}
 	
 	function fld_enterpoints_input_draw($param)

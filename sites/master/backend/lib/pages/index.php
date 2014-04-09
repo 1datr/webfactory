@@ -14,7 +14,7 @@ class wfl_pages extends wf_lib {
 	{
 		return Array(
 				//new wfp_param('content_type','user',"Тип содержимого",$this->getname(),'Тип содержимого, выводимый в обзоре'),
-				new wfp_param('pagelist',Array('frontend'=>Array('index','auth'),'backend'=>Array('index'),'install'=>Array('index')),"Список страниц",$this->getname(),'Страницы сайта'),
+				new wfp_param('pagelist',Array('frontend'=>Array('index'),'backend'=>Array('index'),'install'=>Array('index')),"Список страниц",$this->getname(),'Страницы сайта'),
 					//not to change this pages
 				new wfp_param('pages_stable',Array('frontend/index','backend/index','install/index'),"Список страниц",$this->getname(),'Страницы сайта'),
 				
@@ -169,6 +169,45 @@ class wfl_pages extends wf_lib {
 				$(this).parent().remove();
 				");
 	}
+	
+	function createfilelist($filelist,$path)
+	{
+		
+		foreach($filelist as $idx => $file)
+		{
+			var_dump($file);
+			if(is_array($file))
+			{				
+				mkdir($path."/".$idx);
+				$this->createfilelist($file,$path."/".$idx);
+			}
+			else 
+			{
+				file_put_contents($path."/".$file.".php","<?php
+?>");
+				
+			}
+		}
+	}
+	
+	function hook_make_base($params)
+	{
+		GLOBAL $_SITE;
+		GLOBAL $_ARGS;
+		GLOBAL $_PAGE;
+		GLOBAL $_ENTERPOINT;
+		
+		$pagelist = $params["project"]->params['pagelist']->value;
+		$site_to = $params['siteto'];
+		var_dump($pagelist);
+		foreach($pagelist as $ep => $plist)
+		{
+		
+			$this->createfilelist($plist,"./sites/".$site_to."/".$ep."/pages");
+		}
+		//exit();
+	}
+	
 	/*
 	function page_index_x($project)
 	{
