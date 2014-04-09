@@ -354,3 +354,44 @@ input[name="newsitename"] {
 .site-to_compile {
 	width: 200px;
 }
+
+#acc_pagetree .accordion-heading a{
+	width: 200px;
+}
+
+#acc_pagetree .accordion-heading a:hover{
+	text-decoration: none;
+}
+
+ul.ul_page_tree
+{
+	 list-style-type:none;
+}
+
+div.unroll_btn-on-accordion
+{
+	float: left;
+}
+
+span.add_btn-on-accordion
+{
+	margin-top:-12px;
+}
+/*
+#acc_pagetree .accordion-toggle i {
+	background-position: -19px -96px;
+	
+	background-image: url(../images/glyphicons-halflings-white.png);
+	background-repeat: none;
+	padding: 1px 6px;
+	font-size: 10.5px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+#acc_pagetree .collapsed i {
+	background-position: 5 -96px;
+	background-image: url(../images/glyphicons-halflings-white.png);
+	background-repeat: none;
+}*/

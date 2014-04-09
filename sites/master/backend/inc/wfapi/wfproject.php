@@ -68,6 +68,15 @@ class wf_project {
 		}
 	}
 	
+	function load_params_on_script($filepath)
+	{
+		include mydir()."projects/".$this->name."/index.php";
+		foreach($_PARAMS as $key => $val)
+		{
+			$this->params[$key]->value=$val;
+		}
+	}
+	
 }
 
 function loadproject($projname)

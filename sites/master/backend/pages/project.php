@@ -66,6 +66,15 @@ if(!empty($_POST['subm_save']))
 	$project->save();
 	redirect($_SERVER['HTTP_REFERER']);
 }
+// load from index.php
+if(!empty($_POST['subm_load']))
+{
+	
+	//print_r($_POST);
+	$project->load_params_on_script('index.php');
+	$project->save();
+	redirect($_SERVER['HTTP_REFERER']);
+}
 // compile the project
 if(!empty($_POST['subm_compile']))
 {
@@ -221,6 +230,7 @@ use BootstrapPHP\Tabs;
 <div class="row">
 	<div class="btn-group">
 		<input type="submit" name="subm_save" value="Сохранить" class="btn" />
+		<input type="submit" name="subm_load" value="Прогрузить" class="btn" />
 		<input type="submit" name="subm_compile" value="Скомпилировать" class="btn" />
 	</div>
 
