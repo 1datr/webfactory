@@ -157,8 +157,12 @@ class wf_lib
 	
 	function page_index($project)
 	{
+		?>
+		<div class="well">
+		<?php 
 		echo $this->getname()." v.".$this->version;
 		?>
+		</div>
 		<table>
 		<?php
 		

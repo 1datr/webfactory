@@ -8,6 +8,7 @@ function head($title)
 	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" version="XHTML+RDFa 1.0" dir="ltr">
 	<head>
 	<title><?php echo $title; ?></title>
+	<link rel="shortcut icon" href="<?php echo nestedurl("favicon.ico");?>">	
 	<meta http-equiv="Content-type" content="text/html; charset=cp1251"/>			
 	<script src="<?php echo nestedurl("js/jquery.min.js");?>" type="text/javascript"></script>
 	<script src="<?php echo nestedurl("js/base.js");?>" type="text/javascript"></script>

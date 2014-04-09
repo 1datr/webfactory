@@ -344,3 +344,13 @@ div#array_box_enterpoints div.array_item div.drop {
     border:1px solid #94a0b4;
     color:#000
 }
+
+input[name="newsitename"] {
+	width: 150px;
+	margin-left: -20px;
+	margin-top: 20px;
+}
+
+.site-to_compile {
+	width: 200px;
+}

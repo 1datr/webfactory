@@ -175,20 +175,24 @@ use BootstrapPHP\Tabs;
 
 	<div class="span2">
 	<h3>Сайт куда компилировать</h3>
-	<div class="btn-group" data-toggle="buttons" style="width:100%;display:inline;">
+	<div class="btn-group well site-to_compile"  >
 
 			<?php 
+			
+			addscript("fuelux/require.js");
+			addcss("fuelux/fuelux.css");
+			
 			$sites = scandir("./sites");
 			$i=0;
 			foreach ($sites as $site)
 			{
 				if(($site!='..') && ($site!='.') && ($site!=$_SITE))
 				{
-					if($i==0) $checked = "checked"; else $checked = "";
+					if($i==0) $checked = "checked=\"checked\""; else $checked = "";
 				?>
 				
-				<label  class="btn btn-primary">
-				<input type="radio" name="_SITE" value="<?php echo $site; ?>" <?php echo $checked; ?>/>&nbsp;<?php echo $site; ?>
+				<label class="radio radio-custom">
+				<input type="radio" name="_SITE" value="<?php echo $site; ?>" <?php echo $checked; ?>><i class="radio"></i><?php echo $site; ?>
 				</label>
 							
 				<?php
@@ -198,19 +202,22 @@ use BootstrapPHP\Tabs;
 			} 
 			?>
 
-				<label class="btn btn-primary">
-					<input type="radio" name="_SITE" value="&newsite" />&nbsp;Новый сайт<br />
-					
+				<label class="radio radio-custom">
+					<input type="radio" name="_SITE" value="&newsite" ><i class="radio"></i>Новый сайт<br />
+					<input type="text" name="newsitename" value=""  />
 				</label>
 				
-				<input type="text" name="newsitename" value=""  />
+				
 
 	</div>
 	</div>
 </div>
     
+<?php 
+//id="myRadio"
+//js_fragment("$('#myRadio').radio();");
+?>
 
-	
 <div class="row">
 	<div class="btn-group">
 		<input type="submit" name="subm_save" value="Сохранить" class="btn" />
